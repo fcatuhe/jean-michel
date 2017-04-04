@@ -32,6 +32,8 @@ class Bot::RoomsController
 
   def create_game
     game = user.rooms.last.games.create(forfeit: Forfeit.order('random()').first)
+    first_team = nil
+    second_team = nil
     Sign.order('random()').limit(2).each_with_index do |sign, index|
       if index < 1
         first_team = game.teams.create(sign: sign)
