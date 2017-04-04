@@ -11,8 +11,8 @@ class Bot::Router
     when Facebook::Messenger::Incoming::Postback
       @postback = message
       handle_postback
-    when Facebook::Messenger::Incoming::Referral
-      handle_referral
+    # when Facebook::Messenger::Incoming::Referral
+    #   handle_referral
     end
   end
 
@@ -22,19 +22,20 @@ class Bot::Router
 
   def handle_message
     case message.text
-    when /hello/i, /bonjour/i, /bonsoir/i, /coucou/i, /salut/i
-      messages_controller.hello(keyword: $LAST_MATCH_INFO[0])
+    when /hello/i, /bonjour/i, /bonsoir/i, /coucou/i, /salut/i, /wesh/i
+      rooms_controller.hello(keyword: $LAST_MATCH_INFO[0])
+    else
+      rooms_controller.default_message
     end
   end
 
   def handle_postback
     case postback.payload
     when 'start'
-      messages_controller.hello
+      rooms_controller.hello
+    when 'create_room'
+      rooms_controller.create
     when /\Arestaurant_(?<id>\d+)\z/
-      restaurant_id = $LAST_MATCH_INFO['id'].to_i
-      orders_controller.update(restaurant_id: restaurant_id)
-      restaurants_controller.show(restaurant_id)
     end
   end
 end

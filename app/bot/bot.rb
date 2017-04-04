@@ -10,10 +10,10 @@ Bot.on :postback do |postback|
   Bot::Router.new(postback)
 end
 
-Bot.on :referral do |referral|
-  puts "Received '#{referral.inspect}' from #{referral.sender}"
-  Bot::Router.new(referral)
-end
+# Bot.on :referral do |referral|
+#   puts "Received '#{referral.inspect}' from #{referral.sender}"
+#   Bot::Router.new(referral)
+# end
 
 Bot.on :delivery do |delivery|
   puts "Delivered message(s) #{delivery.ids}"

@@ -44,6 +44,9 @@
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="password" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <row name="first_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -53,7 +56,13 @@
 <row name="messenger_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="facebook_picture_url" null="1" autoincrement="0">
+<row name="profile_pic_url" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="messenger_locale" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="gender" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -68,7 +77,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="313" y="123" name="opponents">
+<table x="313" y="181" name="opponents">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -87,7 +96,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="484" y="33" name="games">
+<table x="484" y="13" name="games">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -95,19 +104,26 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="rooms" row="id" />
 </row>
+<row name="forfeit_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="forfeits" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="842" y="156" name="signs">
+<table x="843" y="192" name="signs">
 <row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="694" y="84" name="teams">
+<table x="689" y="131" name="teams">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -119,15 +135,11 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="signs" row="id" />
 </row>
-<row name="forfeit_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="forfeits" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="479" y="173" name="team_opponents">
+<table x="476" y="164" name="team_members">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -143,8 +155,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="842" y="237" name="forfeits">
+<table x="828" y="10" name="forfeits">
 <row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">

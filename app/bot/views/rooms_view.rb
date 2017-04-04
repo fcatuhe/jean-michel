@@ -4,6 +4,45 @@ class Bot::RoomsView
     @user = user
   end
 
+  def hello(options = {})
+    keyword = (options[:keyword]&.capitalize || 'Salut')
+    message.reply(
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: "#{keyword} c'est Jean-Michel !\nDémarre le jeu ou attends l'invitation de ton pote.",
+          buttons: [
+            {
+              type: 'postback',
+              title: 'Démarrer le jeu',
+              payload: 'create_room'
+            }
+          ]
+        }
+      }
+    )
+  end
+
+  def default_message
+    message.reply(
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: "T'es trop bourré mec, j'ai rien compris !\nDémarre le jeu ou attends l'invitation de ton pote.",
+          buttons: [
+            {
+              type: 'postback',
+              title: 'Démarrer le jeu',
+              payload: 'create_room'
+            }
+          ]
+        }
+      }
+    )
+  end
+
   def index(meals, params = {})
     meals = meals.map do |meal|
       buttons = [

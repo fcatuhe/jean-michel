@@ -1,6 +1,14 @@
 class Bot::RoomsController
   def initialize(message, user)
-    @view = BotYvon::MealsView.new(message, user)
+    @view = Bot::RoomsView.new(message, user)
+  end
+
+  def hello(options = {})
+    view.hello(options)
+  end
+
+  def default_message
+    view.default_message
   end
 
   def index(meal_category_id)
