@@ -32,13 +32,16 @@ class Bot::RoomsController
 
   def create_game
     game = user.rooms.last.games.create(forfeit: Forfeit.order('random()').first)
-    game.save
     signs = Sign.order('random()').limit(2)
     first_team = game.teams.create(sign: signs.first)
     second_team = game.teams.create(sign: signs.last)
-    opponents = game.room.opponents.order('random()')
-    opponents.first(2).each { |opponent| first_team.team_members.create(opponent: opponent) }
-    opponents.last(2).each { |opponent| second_team.team_members.create(opponent: opponent) }
+    game.room.opponents.order('random()').each_with_index do |opponent, index|
+      if index < 2
+        first_team.team_members.create(opponent: opponent)
+      else
+        second_team.team_members.create(opponent: opponent)
+      end
+    end
     Bot::NotificationsController.new.notify_sign(game)
   end
 
