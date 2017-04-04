@@ -9,7 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem 'rest-client'
-gem 'facebook-messenger'
+gem 'facebook-messenger', github: 'hyperoslo/facebook-messenger'
 
 gem 'sass-rails'
 gem 'jquery-rails'

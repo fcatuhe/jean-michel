@@ -43,83 +43,78 @@ class Bot::RoomsView
     )
   end
 
-  def index(meals, params = {})
-    meals = meals.map do |meal|
-      buttons = [
-        {
-          type: 'postback',
-          title: I18n.t('bot.meal.index.pick_menu'),
-          payload: "meal_#{meal.id}_menu"
-        }
-      ]
-      buttons << {
-        type: 'postback',
-        title: I18n.t('bot.meal.index.pick_next', next_meal_category: params[:next_meal_category].name),
-        payload: "meal_#{meal.id}_next"
-      } if params[:next_meal_category]
-      result = {
-        title: meal.name,
-        image_url: cl_image_path_with_second(meal.photo&.path, meal.meal_category.photo&.path, width: 382, height: 200, crop: :fill),
-        subtitle: "#{meal.price}\n#{meal.description}"
-      }
-      result[:buttons] = buttons if params[:on_duty]
-      result
-    end
-
-    if params[:on_duty]
-      meals << {
-        title: I18n.t('bot.meal.index.no_thanks', meal_category: params[:meal_category].name.downcase),
-        image_url: cl_image_path("background_white_382_200.png", overlay:"text:Fredoka%20One_40:#{I18n.t('bot.meal.index.no_thanks_image')}", color: "#292C3C"),
-        subtitle: I18n.t('bot.meal.index.no_thanks_message'),
-        buttons: [
-          {
-            type: 'postback',
-            title: I18n.t('bot.meal.index.menu'),
-            payload: "menu"
-          }
-        ]
-      }
-    else
-      meals << {
-        title: I18n.t('bot.meal.index.back'),
-        image_url: cl_image_path("background_white_382_200.png", overlay:"text:Fredoka%20One_40:#{I18n.t('bot.meal.index.back_image')}", color: "#292C3C"),
-        subtitle: I18n.t('bot.meal.index.back_message'),
-        buttons: [
-          {
-            type: 'postback',
-            title: I18n.t('bot.meal.index.menu'),
-            payload: "menu"
-          }
-        ]
-      }
-    end
-
-    message.reply(
-      text: I18n.t('bot.swipe', item: 'les plats')
-    )
-
+  def invite(room)
     message.reply(
       attachment: {
         type: 'template',
         payload: {
-          template_type: 'generic',
-          elements: meals
+          template_type: 'button',
+          text: 'Invite tes 3 potes :',
+          buttons: [
+            {
+              type: 'element_share',
+              share_contents: {
+                attachment: {
+                  type: 'template',
+                  payload: {
+                    template_type: 'generic',
+                    image_aspect_ratio: 'square',
+                    elements: [
+                      {
+                        title: 'Rejoins-moi chez Jean-Michel',
+                        # image_url: ,
+                        buttons: [
+                          {
+                            type: 'web_url',
+                            title: "J'arrive !",
+                            url: "http://m.me/#{ENV['PAGE_ID']}?ref=room_#{room.id}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
         }
       }
     )
   end
 
-  def get_option(options, params = {})
-    options = options.map do |option|
-      {
-        content_type: 'text',
-        title: option.name.capitalize,
-        payload: "meal_#{params[:meal_id]}_option_#{option.id}_#{params[:action]}"
-      }
-    end
+  def entered(room)
+    users = room.users.map { |user| "- #{user.first_name}" }.join("\n")
     message.reply(
-      text: I18n.t('bot.meal.get_option.choose_option'),
-      quick_replies: options
+      {
+        text: "Bienvenue, les joueurs sont :\n#{users}"
+      }
+    )
+  end
+
+  def room_full
+    message.reply(
+      {
+        text: "Désolé, le jeu est complet."
+      }
+    )
+  end
+
+  def play_again
+    message.reply(
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: "Tu relances une partie ?",
+          buttons: [
+            {
+              type: 'postback',
+              title: 'Lancer une partie',
+              payload: 'create_game'
+            }
+          ]
+        }
+      }
     )
   end
 
