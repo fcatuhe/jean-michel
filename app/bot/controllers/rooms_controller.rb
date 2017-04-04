@@ -32,6 +32,7 @@ class Bot::RoomsController
 
   def create_game
     game = user.rooms.last.games.create(forfeit: Forfeit.order('random()').first)
+    game.save
     signs = Sign.order('random()').limit(2)
     first_team = game.teams.create(sign: signs.first)
     second_team = game.teams.create(sign: signs.last)
