@@ -77,7 +77,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="313" y="181" name="opponents">
+<table x="321" y="172" name="players">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -147,9 +147,9 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="teams" row="id" />
 </row>
-<row name="opponent_id" null="1" autoincrement="0">
+<row name="player_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="opponents" row="id" />
+<default>NULL</default><relation table="players" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
