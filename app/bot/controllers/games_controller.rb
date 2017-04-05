@@ -33,11 +33,13 @@ class Bot::GamesController
     game = Game.find(game_id)
     player = Player.find(player_id)
 
-    game.referee(user.player, player)
-
-    Bot::NotificationsController.new.notify_players(game, player: user.player, designated_player: player)
-
-    view.play_again
+    if game.room.full?
+      game.referee(user.player, player)
+      Bot::NotificationsController.new.notify_players(game, player: user.player, designated_player: player)
+      view.play_again
+    else
+      view.no_room
+    end
   end
 
   private

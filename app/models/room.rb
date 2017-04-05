@@ -7,6 +7,6 @@ class Room < ApplicationRecord
   validates :players, length: { maximum: 4 } # not working
 
   def full?
-    players.count == 4 && users.map { |user| user.rooms.last == self }.all?
+    players.count == 4 && users.includes(:rooms).map { |user| user.rooms.last == self }.all?
   end
 end

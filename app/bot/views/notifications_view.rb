@@ -41,7 +41,7 @@ class Bot::NotificationsView
   end
 
   def notify_sign(game)
-    game.teams.each do |team|
+    game.teams.includes(:players).each do |team|
       team.players.each do |player|
         quick_replies = []
         player_index = game.players.index(player)
@@ -73,7 +73,7 @@ class Bot::NotificationsView
     teams = game.teams.map { |team| "- #{team.players.map { |player| player.first_name }.join(' & ')}" }.join("\n")
     scores = game.players.order(score: :desc).map { |player| "- #{player.first_name} : #{player.score}"}.join("\n")
 
-    game.teams.each do |team|
+    game.teams.includes(:players).each do |team|
       if team.winner?
         team.players.each do |player|
           Bot.deliver({
