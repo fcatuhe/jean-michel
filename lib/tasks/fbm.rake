@@ -5,11 +5,11 @@ namespace :fbm do
       greeting:[
         {
           locale: "default",
-          text: "Salut c'est Jean-Michel\nJoues avec 3 de tes potes pour te chauffer en soirée"
+          text: "Salut c'est Jean-Michel !\nJoue avec 3 de tes potes pour vous chauffer en soirée"
         },
         {
           locale: "fr_FR",
-          text: "Salut c'est Jean-Michel\nJoues avec 3 de tes potes pour te chauffer en soirée"
+          text: "Salut c'est Jean-Michel !\nJoue avec 3 de tes potes pour vous chauffer en soirée"
         }
       ]
     }
