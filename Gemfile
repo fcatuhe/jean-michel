@@ -10,6 +10,8 @@ gem 'devise'
 gem 'redis'
 gem 'rest-client'
 gem 'facebook-messenger', github: 'hyperoslo/facebook-messenger'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 
 gem 'sass-rails'
 gem 'jquery-rails'
