@@ -3,12 +3,12 @@ class Bot::NotificationsController
     @view = Bot::NotificationsView.new
   end
 
-  def notify_new_opponent(room)
-    view.notify_new_opponent(room)
+  def notify_new_player(room)
+    view.notify_new_player(room)
   end
 
   def start_game(room)
-    room_creator = room.users.first
+    room_creator = room.players.first
     view.start_game(room_creator)
   end
 
@@ -16,12 +16,8 @@ class Bot::NotificationsController
     view.notify_sign(game)
   end
 
-  def notify_winners(user, opponent)
-    view.notify_winners(user, opponent)
-  end
-
-  def notify_loosers(user, opponent)
-    view.notify_loosers(user, opponent)
+  def notify_players(game, params = {})
+    view.notify_players(game, params)
   end
 
   private

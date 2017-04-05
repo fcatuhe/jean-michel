@@ -4,46 +4,7 @@ class Bot::RoomsView
     @user = user
   end
 
-  def hello(options = {})
-    keyword = (options[:keyword]&.capitalize || 'Salut')
-    message.reply(
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: "#{keyword} c'est Jean-Michel !\nDémarre le jeu ou attends l'invitation de ton pote.",
-          buttons: [
-            {
-              type: 'postback',
-              title: 'Démarrer le jeu',
-              payload: 'create_room'
-            }
-          ]
-        }
-      }
-    )
-  end
-
-  def default_message
-    message.reply(
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: "T'es trop bourré mec, j'ai rien compris !\nDémarre le jeu ou attends l'invitation de ton pote.",
-          buttons: [
-            {
-              type: 'postback',
-              title: 'Démarrer le jeu',
-              payload: 'create_room'
-            }
-          ]
-        }
-      }
-    )
-  end
-
-  def invite(room)
+  def invite_players(room)
     message.reply(
       attachment: {
         type: 'template',
@@ -82,38 +43,19 @@ class Bot::RoomsView
     )
   end
 
-  def entered(room)
-    users = room.users.map { |user| "- #{user.first_name}" }.join("\n")
+  def enter(room)
+    players = room.players.map { |player| "- #{player.first_name}" }.join("\n")
     message.reply(
       {
-        text: "Bienvenue, les joueurs sont :\n#{users}"
+        text: "Bienvenue, les joueurs sont :\n#{players}"
       }
     )
   end
 
-  def room_full
+  def full
     message.reply(
       {
-        text: "Désolé, le jeu est complet."
-      }
-    )
-  end
-
-  def play_again
-    message.reply(
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'button',
-          text: "Tu relances une partie ?",
-          buttons: [
-            {
-              type: 'postback',
-              title: 'Lancer une partie',
-              payload: 'create_game'
-            }
-          ]
-        }
+        text: "Désolé, le jeu est complet"
       }
     )
   end

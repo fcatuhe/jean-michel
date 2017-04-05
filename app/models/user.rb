@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :opponents
-  has_many :rooms, through: :opponents
+  has_many :players
+  has_many :rooms, through: :players
+
+  def dude
+    gender == 'male' ? 'mec' : 'meuf'
+  end
+
+  def player
+    players.last
+  end
+
 end

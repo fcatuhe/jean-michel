@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404113553) do
+ActiveRecord::Schema.define(version: 20170405110330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 20170404113553) do
     t.index ["room_id"], name: "index_games_on_room_id", using: :btree
   end
 
-  create_table "opponents", force: :cascade do |t|
+  create_table "players", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "room_id"
-    t.integer  "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_opponents_on_room_id", using: :btree
-    t.index ["user_id"], name: "index_opponents_on_user_id", using: :btree
+    t.integer  "score",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["room_id"], name: "index_players_on_room_id", using: :btree
+    t.index ["user_id"], name: "index_players_on_user_id", using: :btree
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(version: 20170404113553) do
 
   create_table "team_members", force: :cascade do |t|
     t.integer  "team_id"
-    t.integer  "opponent_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["opponent_id"], name: "index_team_members_on_opponent_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "player_id"
+    t.index ["player_id"], name: "index_team_members_on_player_id", using: :btree
     t.index ["team_id"], name: "index_team_members_on_team_id", using: :btree
   end
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20170404113553) do
     t.integer  "sign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "result"
     t.index ["game_id"], name: "index_teams_on_game_id", using: :btree
     t.index ["sign_id"], name: "index_teams_on_sign_id", using: :btree
   end
@@ -94,9 +95,8 @@ ActiveRecord::Schema.define(version: 20170404113553) do
 
   add_foreign_key "games", "forfeits"
   add_foreign_key "games", "rooms"
-  add_foreign_key "opponents", "rooms"
-  add_foreign_key "opponents", "users"
-  add_foreign_key "team_members", "opponents"
+  add_foreign_key "players", "rooms"
+  add_foreign_key "players", "users"
   add_foreign_key "team_members", "teams"
   add_foreign_key "teams", "games"
   add_foreign_key "teams", "signs"

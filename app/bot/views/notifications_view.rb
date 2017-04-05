@@ -1,14 +1,14 @@
 class Bot::NotificationsView
-  def notify_new_opponent(room)
-    new_user = room.users.last
+  def notify_new_player(room)
+    new_player = room.players.last
 
-    room.users[0..-2].each do |user|
+    room.players[0..-2].each do |player|
       Bot.deliver({
         recipient: {
-          id: user.messenger_id
+          id: player.messenger_id
         },
         message: {
-          text: "#{new_user.first_name} est entré dans le jeu"
+          text: "#{new_player.first_name} est entré dans le jeu"
         }},
         access_token: ENV['ACCESS_TOKEN']
       )
@@ -25,12 +25,12 @@ class Bot::NotificationsView
           type: 'template',
           payload: {
             template_type: 'button',
-            text: "Le groupe est complet, tu peux lancer une partie :",
+            text: "Le groupe est complet, tu peux lancer une partie",
             buttons: [
               {
                 type: 'postback',
-                title: 'Lancer une partie',
-                payload: 'create_game'
+                title: 'Je lance la partie !',
+                payload: 'game_create'
               }
             ]
           }
@@ -41,58 +41,63 @@ class Bot::NotificationsView
   end
 
   def notify_sign(game)
-    game.room.opponents.each do |opponent|
-      quick_replies = []
-      opponent_index = game.room.opponents.index(opponent)
-      3.times do |i|
-        iterated_opponent = game.room.opponents[(opponent_index + i) % 4]
-        quick_replies << {
-          content_type: 'text',
-          title: "#{iterated_opponent.user.first_name}",
-          payload: "opponent_#{iterated_opponent.id}"
-        }
+    game.teams.each do |team|
+      team.players.each do |player|
+        quick_replies = []
+        player_index = game.players.index(player)
+        3.times do |i|
+          iteration_player = game.players[(player_index + i + 1) % 4]
+          quick_replies << {
+            content_type: 'text',
+            title: "#{iteration_player.first_name}",
+            payload: "game_#{game.id}_player_#{iteration_player.id}"
+          }
+        end
+
+        Bot.deliver({
+          recipient: {
+            id: player.messenger_id
+          },
+          message: {
+            text: "Le signe de ton équipe est : #{team.sign.description}.\nAs-tu reconnu ton coéquipier ?",
+            quick_replies: quick_replies
+          }},
+          access_token: ENV['ACCESS_TOKEN']
+        )
       end
-
-      Bot.deliver({
-        recipient: {
-          id: opponent.user.messenger_id
-        },
-        message: {
-          text: "Le signe de ton équipe est : #{opponent.teams.last.sign.description}.\nAs-tu reconnu ton coéquipier ?",
-          quick_replies: quick_replies
-        }},
-        access_token: ENV['ACCESS_TOKEN']
-      )
     end
   end
 
-  def notify_winners(player_user, opponent)
-    forfeit = player_user.rooms.last.games.last.forfeit.description
-    player_user.rooms.last.users.each do |user|
-      Bot.deliver({
-        recipient: {
-          id: user.messenger_id
-        },
-        message: {
-          text: "#{player_user.first_name} a désigné #{opponent.user.first_name}, ils ont gagné !\nGage pour les perdants : #{forfeit}",
-        }},
-        access_token: ENV['ACCESS_TOKEN']
-      )
-    end
-  end
+  def notify_players(game, params = {})
+    forfeit = game.forfeit.description
+    scores = game.players.order(score: :desc).map { |player| "- #{player.first_name} - #{player.score}"}.join("\n")
 
-  def notify_loosers(player_user, opponent)
-    forfeit = player_user.rooms.last.games.last.forfeit.description
-    player_user.rooms.last.users.each do |user|
-      Bot.deliver({
-        recipient: {
-          id: user.messenger_id
-        },
-        message: {
-          text: "#{player_user.first_name} a désigné #{opponent.user.first_name}, c'est perdu pour son équipe !\nGage pour les perdants : #{forfeit}",
-        }},
-        access_token: ENV['ACCESS_TOKEN']
-      )
+    game.teams.each do |team|
+      if team.winner?
+        team.players.each do |player|
+          Bot.deliver({
+            recipient: {
+              id: player.messenger_id
+            },
+            message: {
+              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}, tu as gagné !\nGage pour les perdants : #{forfeit}\nScore :\n#{scores}",
+            }},
+            access_token: ENV['ACCESS_TOKEN']
+          )
+        end
+      else
+        team.players.each do |player|
+          Bot.deliver({
+            recipient: {
+              id: player.messenger_id
+            },
+            message: {
+              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}, tu as perdu !\nTon gage : #{forfeit}\nScore :\n#{scores}",
+            }},
+            access_token: ENV['ACCESS_TOKEN']
+          )
+        end
+      end
     end
   end
 end

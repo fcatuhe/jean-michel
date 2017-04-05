@@ -1,7 +1,12 @@
 class Room < ApplicationRecord
-  has_many :opponents
-  has_many :users, through: :opponents
+  has_many :players
+  has_many :users, through: :players
   has_many :games
+  has_many :teams, through: :games
 
-  validates :opponents, length: { maximum: 4 } # not working
+  validates :players, length: { maximum: 4 } # not working
+
+  def full?
+    players.count == 4 && users.map { |user| user.rooms.last == self }.all?
+  end
 end
