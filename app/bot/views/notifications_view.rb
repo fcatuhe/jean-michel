@@ -70,7 +70,8 @@ class Bot::NotificationsView
 
   def notify_players(game, params = {})
     forfeit = game.forfeit.description
-    scores = game.players.order(score: :desc).map { |player| "- #{player.first_name} - #{player.score}"}.join("\n")
+    teams = game.teams.map { |team| "- #{team.players.map { |player| player.first_name }.join(' & ')}" }.join("\n")
+    scores = game.players.order(score: :desc).map { |player| "- #{player.first_name} : #{player.score}"}.join("\n")
 
     game.teams.each do |team|
       if team.winner?
@@ -80,7 +81,7 @@ class Bot::NotificationsView
               id: player.messenger_id
             },
             message: {
-              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}, tu as gagné !\nGage pour les perdants : #{forfeit}\nScore :\n#{scores}",
+              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}\nLes équipes étaient :\n#{teams}\nTu as gagné !\nGage pour les perdants :\n- #{forfeit}\nScore :\n#{scores}",
             }},
             access_token: ENV['ACCESS_TOKEN']
           )
@@ -92,7 +93,7 @@ class Bot::NotificationsView
               id: player.messenger_id
             },
             message: {
-              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}, tu as perdu !\nTon gage : #{forfeit}\nScore :\n#{scores}",
+              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}\nLes équipes étaient :\n#{teams}\nTu as perdu !\nTon gage :\n- #{forfeit}\nScore :\n#{scores}",
             }},
             access_token: ENV['ACCESS_TOKEN']
           )
