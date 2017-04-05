@@ -1,2 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Jean-Michel</h1>
+<div class="fb-messengermessageus"
+  messenger_app_id="<%= ENV['APP_ID'] %>"
+  page_id="<%= ENV['PAGE_ID'] %>"
+  color="blue"
+  size="xlarge" >
+</div>
+
+<%= javascript_tag do %>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: "<%= ENV['APP_ID'] %>",
+      xfbml: true,
+      version: "v2.8"
+    });
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) { return; }
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/fr_FR/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+<% end %>
