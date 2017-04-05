@@ -8,6 +8,10 @@ class Bot::MessagesController
     view.hello(keywords)
   end
 
+  def share
+    view.share
+  end
+
   def default
     view.default
   end

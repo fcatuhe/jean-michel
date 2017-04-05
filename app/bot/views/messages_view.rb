@@ -24,6 +24,51 @@ class Bot::MessagesView
     )
   end
 
+  def share
+    message.reply(
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          image_aspect_ratio: 'square',
+          elements: [
+            {
+              title: "👊 Checke Jean-Michel pour ambiancer tes soirées !",
+              # image_url: ,
+              buttons: [
+                {
+                  type: 'element_share',
+                  share_contents: {
+                    attachment: {
+                      type: 'template',
+                      payload: {
+                        template_type: 'generic',
+                        image_aspect_ratio: 'square',
+                        elements: [
+                          {
+                            title: "👊 Checke Jean-Michel pour ambiancer tes soirées !",
+                            # image_url: ,
+                            buttons: [
+                              {
+                                type: 'web_url',
+                                title: "👊 Jean-Michel",
+                                url: "http://m.me/#{ENV['PAGE_ID']}"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    )
+  end
+
   def default
     message.reply(
       attachment: {

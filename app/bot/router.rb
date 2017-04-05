@@ -44,6 +44,8 @@ class Bot::Router
     case postback.payload
     when 'start'
       messages_controller.hello
+    when 'share'
+      messages_controller.share
     when 'room_create'
       rooms_controller.create
     when 'game_create'
