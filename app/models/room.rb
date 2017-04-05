@@ -1,7 +1,7 @@
 class Room < ApplicationRecord
-  has_many :players
+  has_many :players, dependent: :destroy
   has_many :users, through: :players
-  has_many :games
+  has_many :games, dependent: :destroy
   has_many :teams, through: :games
 
   validates :players, length: { maximum: 4 } # not working
