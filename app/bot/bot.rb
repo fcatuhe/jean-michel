@@ -1,4 +1,5 @@
 include Facebook::Messenger
+include ActionView::Helpers::AssetUrlHelper
 
 Bot.on :message do |message|
   puts "Received '#{message.inspect}' from #{message.sender}"

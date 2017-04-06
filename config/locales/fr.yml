@@ -1,16 +1,24 @@
+---
 fr:
   bot:
     games:
-      no_room: "Désolé, tu n'as plus de jeu en cours"
+      no_room: Désolé, tu n'as plus de jeu en cours
       play_again:
-        text: "Tu relances une partie ?"
-        button: "Je relance !"
+        button: Je relance !
+        text: Tu relances une partie ?
     messages:
-      greeting: "Salut"
+      greeting: Salut
       hello:
-        text: "%{greeting} c'est Jean-Michel !\nOuvre le jeu ou attends l'invitation de ton pote"
-        button: "J'ouvre le jeu !"
+        button: J'ouvre le jeu !
+        text: |-
+          %{greeting} c'est Jean-Michel !
+          Ouvre le jeu ou attends l'invitation de ton pote
       share:
-        title: "👊 Checke Jean-Michel pour ambiancer tes soirées !"
-        element_button: "👊 Jean-Michel"
-
+        element_button: "\U0001F44A Jean-Michel"
+        title: "\U0001F44A Checke Jean-Michel pour ambiancer tes soirées !"
+  shared:
+    navbar:
+      profile: Profile
+      sign_in: Sign in
+      sign_out: Sign out
+      top_call_to_action: Top call to action
