@@ -7,7 +7,7 @@ class Bot::GamesView
   def no_room
     message.reply(
       {
-        text: I18n.t('.no_room')
+        text: I18n.t('bot.games.no_room')
       }
     )
   end

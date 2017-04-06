@@ -5,13 +5,13 @@ class Bot::MessagesView
   end
 
   def hello(keywords = {})
-    greeting = (keywords[:greeting]&.capitalize || 'Salut')
+    greeting = (keywords[:greeting]&.capitalize || I18n.t('bot.messages.greeting'))
     message.reply(
       attachment: {
         type: 'template',
         payload: {
           template_type: 'button',
-          text: I18n.t('.hello', greeting: greeting),
+          text: I18n.t('bot.messages.hello', greeting: greeting),
           buttons: [
             {
               type: 'postback',
