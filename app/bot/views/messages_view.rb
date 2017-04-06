@@ -47,7 +47,7 @@ class Bot::MessagesView
                         elements: [
                           {
                             title: I18n.t('bot.messages.share.title'),
-                            image_url: "https://jean-michel.herokuapp.com#{image_path('messenger_code_400.png')}",
+                            image_url: cl_image_path('messenger_code', width: 400),
                             buttons: [
                               {
                                 type: 'web_url',
