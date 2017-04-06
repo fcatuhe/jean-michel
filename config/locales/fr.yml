@@ -4,3 +4,4 @@ fr:
       no_room: "Désolé, tu n'as plus de jeu en cours"
     messages_view:
       hello: "%{greeting} c'est Jean-Michel !\nOuvre le jeu ou attends l'invitation de ton pote"
+

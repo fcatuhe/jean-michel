@@ -7,7 +7,7 @@ class Bot::GamesView
   def no_room
     message.reply(
       {
-        text: "Désolé, tu n'as plus de jeu en cours"
+        text: I18n.t('.no_room')
       }
     )
   end

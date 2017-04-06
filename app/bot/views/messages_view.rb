@@ -11,7 +11,7 @@ class Bot::MessagesView
         type: 'template',
         payload: {
           template_type: 'button',
-          text: "#{greeting} c'est Jean-Michel !\nOuvre le jeu ou attends l'invitation de ton pote",
+          text: I18n.t('.hello', greeting: greeting),
           buttons: [
             {
               type: 'postback',
