@@ -25,7 +25,6 @@ class Bot::MessagesView
   end
 
   def share
-    byebug
     message.reply(
       attachment: {
         type: 'template',
