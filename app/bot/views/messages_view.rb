@@ -25,7 +25,9 @@ class Bot::MessagesView
   end
 
   def share
-    puts image_url('messenger_code_400.png')
+    puts image_path('messenger_code_400.png')
+    puts "https://jean-michel.herokuapp.com#{image_path('messenger_code_400.png')}"
+    puts "https://jean-michel.herokuapp.com#{image_url('messenger_code_400.png')}"
     message.reply(
       attachment: {
         type: 'template',
@@ -35,7 +37,7 @@ class Bot::MessagesView
           elements: [
             {
               title: I18n.t('bot.messages.share.title'),
-              image_url: "https://jean-michel.herokuapp.com#{image_url('messenger_code_400.png')}",
+              image_url: "https://jean-michel.herokuapp.com#{image_path('messenger_code_400.png')}",
               buttons: [
                 {
                   type: 'element_share',
@@ -48,7 +50,7 @@ class Bot::MessagesView
                         elements: [
                           {
                             title: I18n.t('bot.messages.share.title'),
-                            image_url: "https://jean-michel.herokuapp.com#{image_url('messenger_code_400.png')}",
+                            image_url: "https://jean-michel.herokuapp.com#{image_path('messenger_code_400.png')}",
                             buttons: [
                               {
                                 type: 'web_url',
