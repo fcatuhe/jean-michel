@@ -77,7 +77,7 @@ namespace :fbm do
   task code: :environment do
     data = {
       type: "standard",
-      image_size: 400
+      image_size: 2000
     }
     puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_codes?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
   end
