@@ -13,7 +13,7 @@ namespace :fbm do
         }
       ]
     }
-    puts RestClient.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
 
     puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=greeting&access_token=#{ENV['ACCESS_TOKEN']}")
   end
@@ -25,7 +25,7 @@ namespace :fbm do
         payload: "start"
       }
     }
-    puts RestClient.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
 
     puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=get_started&access_token=#{ENV['ACCESS_TOKEN']}")
   end
@@ -68,9 +68,17 @@ namespace :fbm do
         }
       ]
     }
-    puts RestClient.post("https://graph.facebook.com/v2.6/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
 
     puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=persistent_menu&access_token=#{ENV['ACCESS_TOKEN']}")
   end
 
+  desc "Messenger Code"
+  task code: :environment do
+    data = {
+      type: "standard",
+      image_size: 400
+    }
+    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_codes?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+  end
 end
