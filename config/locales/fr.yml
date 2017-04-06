@@ -1,0 +1,16 @@
+fr:
+  bot:
+    games:
+      no_room: "Désolé, tu n'as plus de jeu en cours"
+      play_again:
+        text: "Tu relances une partie ?"
+        button: "Je relance !"
+    messages:
+      greeting: "Salut"
+      hello:
+        text: "%{greeting} c'est Jean-Michel !\nOuvre le jeu ou attends l'invitation de ton pote"
+        button: "J'ouvre le jeu !"
+      share:
+        title: "👊 Checke Jean-Michel pour ambiancer tes soirées !"
+        element_button: "👊 Jean-Michel"
+

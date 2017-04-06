@@ -7,7 +7,7 @@ class Bot::GamesView
   def no_room
     message.reply(
       {
-        text: "Désolé, tu n'as plus de jeu en cours"
+        text: I18n.t('bot.games.no_room')
       }
     )
   end
@@ -18,11 +18,11 @@ class Bot::GamesView
         type: 'template',
         payload: {
           template_type: 'button',
-          text: "Tu relances une partie ?",
+          text: I18n.t('bot.games.play_again.text'),
           buttons: [
             {
               type: 'postback',
-              title: 'Je relance !',
+              title: I18n.t('bot.games.play_again.button'),
               payload: 'game_create'
             }
           ]

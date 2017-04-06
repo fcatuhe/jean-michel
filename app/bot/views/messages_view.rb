@@ -5,17 +5,17 @@ class Bot::MessagesView
   end
 
   def hello(keywords = {})
-    greeting = (keywords[:greeting]&.capitalize || 'Salut')
+    greeting = (keywords[:greeting]&.capitalize || I18n.t('bot.messages.greeting'))
     message.reply(
       attachment: {
         type: 'template',
         payload: {
           template_type: 'button',
-          text: "#{greeting} c'est Jean-Michel !\nOuvre le jeu ou attends l'invitation de ton pote",
+          text: I18n.t('bot.messages.hello.text', greeting: greeting),
           buttons: [
             {
               type: 'postback',
-              title: "J'ouvre le jeu !",
+              title: I18n.t('bot.messages.hello.button'),
               payload: 'room_create'
             }
           ]
@@ -33,7 +33,7 @@ class Bot::MessagesView
           image_aspect_ratio: 'square',
           elements: [
             {
-              title: "👊 Checke Jean-Michel pour ambiancer tes soirées !",
+              title: I18n.t('bot.messages.share.title'),
               # image_url: ,
               buttons: [
                 {
@@ -46,12 +46,12 @@ class Bot::MessagesView
                         image_aspect_ratio: 'square',
                         elements: [
                           {
-                            title: "👊 Checke Jean-Michel pour ambiancer tes soirées !",
+                            title: I18n.t('bot.messages.share.title'),
                             # image_url: ,
                             buttons: [
                               {
                                 type: 'web_url',
-                                title: "👊 Jean-Michel",
+                                title: I18n.t('bot.messages.share.element_button'),
                                 url: "http://m.me/#{ENV['PAGE_ID']}"
                               }
                             ]

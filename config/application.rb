@@ -22,6 +22,11 @@ module JeanMichel
       generate.assets false
     end
 
+    # I18n configuration
+    config.i18n.default_locale = :en
+    config.i18n.enforce_available_locales = false
+    config.i18n.fallbacks = true
+
     # Auto-load the bot and its subdirectories
     config.paths.add File.join('app', 'bot'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'bot', '*')]

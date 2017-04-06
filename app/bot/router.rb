@@ -41,6 +41,13 @@ class Bot::Router
   end
 
   def handle_postback
+    case postback&.referral&.ref
+    when /\Aroom_(?<id>\d+)\z/
+      room_id = $LAST_MATCH_INFO['id']
+      rooms_controller.add_player(room_id)
+      return
+    end
+
     case postback.payload
     when 'start'
       messages_controller.hello
