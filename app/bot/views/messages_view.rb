@@ -25,7 +25,7 @@ class Bot::MessagesView
   end
 
   def share
-    puts image_url('messenger_code_400.png'
+    puts image_url('messenger_code_400.png')
     message.reply(
       attachment: {
         type: 'template',
