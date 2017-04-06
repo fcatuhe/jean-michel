@@ -1,6 +1,8 @@
 <h1>Jean-Michel</h1>
 
-<%= cl_image_tag('messenger_code', width: 400) %>
+<div>
+  <%= cl_image_tag('messenger_code', width: 400, crop: :scale) %>
+</div>
 
 <div class="fb-messengermessageus"
   messenger_app_id="<%= ENV['APP_ID'] %>"

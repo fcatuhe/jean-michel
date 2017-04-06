@@ -34,7 +34,7 @@ class Bot::MessagesView
           elements: [
             {
               title: I18n.t('bot.messages.share.title'),
-              image_url: cl_image_path('messenger_code', width: 400),
+              image_url: cl_image_path('messenger_code', width: 400, crop: :scale),
               buttons: [
                 {
                   type: 'element_share',
@@ -47,7 +47,7 @@ class Bot::MessagesView
                         elements: [
                           {
                             title: I18n.t('bot.messages.share.title'),
-                            image_url: cl_image_path('messenger_code', width: 400),
+                            image_url: cl_image_path('messenger_code', width: 400, crop: :scale),
                             buttons: [
                               {
                                 type: 'web_url',
