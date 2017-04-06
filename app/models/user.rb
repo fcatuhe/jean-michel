@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :players
 
   def dude
-    gender == 'male' ? 'mec' : 'meuf'
+    gender == 'male' ? I18n.t('models.user.he_dude') : I18n.t('models.user.she_dude')
   end
 
   def player

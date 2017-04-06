@@ -5,7 +5,7 @@ namespace :fbm do
       greeting:[
         {
           locale: "default",
-          text: "Hello it's Jean-Michel !\nPlay with 3 buddies to heat up the night"
+          text: "Hello it's Jean-Michel !\nPlay with 3 buddies to heat-up the party"
         },
         {
           locale: "fr_FR",
@@ -40,7 +40,7 @@ namespace :fbm do
           call_to_actions: [
             {
               type: "postback",
-              title: "🍻 New game",
+              title: "🍻 Restart game",
               payload: "start",
             },
             {
@@ -56,7 +56,7 @@ namespace :fbm do
           call_to_actions: [
             {
               type: "postback",
-              title: "🍻 Nouveau jeu",
+              title: "🍻 Redémarre le jeu",
               payload: "start",
             },
             {

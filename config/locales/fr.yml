@@ -1,10 +1,14 @@
 ---
 fr:
+  models:
+    user:
+      he_dude: mec
+      she_dude: meuf
   bot:
     games:
       no_room: Désolé, tu n'as plus de jeu en cours
       play_again:
-        button: Je relance !
+        button: Oui chef !
         text: Tu relances une partie ?
     messages:
       default:
@@ -23,7 +27,7 @@ fr:
         title: 👊 Checke Jean-Michel pour ambiancer tes soirées !
     notifications:
       notify_new_player: |-
-        %{new_player} est entré dans le jeu
+        %{new_player} est dans la place
       notify_players:
         loosers: |-
           %{player} a désigné %{designated_player}
@@ -52,12 +56,12 @@ fr:
         text: Le groupe est complet, tu peux lancer une partie
     rooms:
       enter: |-
-        Bienvenue, les joueurs sont :
+        Pas trop tôt, tes potes sont déjà là :
         %{players}
-      full: Désolé, le jeu est complet
+      full: Bad trip, le jeu est complet
       invite_players:
         element_button: J'arrive !
-        element_title: Rejoins-moi chez Jean-Michel
+        element_title: Ramène ta face chez Jean-Michel
         text: |-
           Invite tes 3 potes :
   shared:

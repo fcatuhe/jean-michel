@@ -1,65 +1,69 @@
 ---
 en:
+  models:
+    user:
+      he_dude: dude
+      she_dude: dolly
   bot:
     games:
       no_room: Sorry you have no game running
       play_again:
-        button: Je relance !
-        text: Tu relances une partie ?
+        button: Yes Sir!
+        text: Play again?
     messages:
       default:
-        button: J'ouvre le jeu !
+        button: Start the game!
         text: |-
-          T'es trop bourré %{dude}, j'ai rien compris !
-          Ouvre le jeu ou attends l'invitation de ton pote
+          You're too drunk %{dude}, I couldn't understand!
+          Start the game or wait for your buddy's invitation
       greeting: Hello
       hello:
-        button: J'ouvre le jeu !
+        button: Let's start!
         text: |-
-          %{greeting} c'est Jean-Michel !
-          Ouvre le jeu ou attends l'invitation de ton pote
+          %{greeting} it's Jean-Michel!
+          Start the game or wait for your buddy's invitation
       share:
         element_button: 👊 Jean-Michel
-        title: 👊 Checke Jean-Michel pour ambiancer tes soirées !
+        title: 👊 Check Jean-Michel to heat-up the party!
     notifications:
       notify_new_player: |-
-        %{new_player} est entré dans le jeu
+        %{new_player} is in da place
       notify_players:
         loosers: |-
-          %{player} a désigné %{designated_player}
-          Les équipes étaient :
+          %{player} pointed %{designated_player}
+          Teams where:
           %{teams}
-          Tu as perdu !
-          Ton gage :
+          You lost!
+          Forfeit:
           - %{forfeit}
-          Score :
+          Score:
           %{scores}
         winners: |-
-          %{player} a désigné %{designated_player}
-          Les équipes étaient :
+          %{player} pointed %{designated_player}
+          Teams where:
           %{teams}
-          Tu as gagné !
-          Gage pour les perdants :
+          You won!
+          Forfeit for the loosers:
           - %{forfeit}
-          Score :
+          Score:
           %{scores}
       notify_sign: |-
-        Le signe de ton équipe est :
+        Your team sign is:
         - %{sign}.
-        As-tu reconnu ton coéquipier ?
+        Did you identify your teammate?
       start_game:
-        button: Je lance la partie !
-        text: Le groupe est complet, tu peux lancer une partie
+        button: Let's go!
+        text: All buddies are here, play now!
     rooms:
       enter: |-
-        Bienvenue, les joueurs sont :
+        At last, your buddies are already here:
         %{players}
-      full: Désolé, le jeu est complet
+      full: Bad trip, the game is full
       invite_players:
-        element_button: J'arrive !
-        element_title: Rejoins-moi chez Jean-Michel
+        element_button: Here I come!
+        element_title: Come over at Jean-Michel's
         text: |-
-          Invite tes 3 potes :
+          Invite your 3 buddies:
   shared:
     navbar:
       profile: Profile
