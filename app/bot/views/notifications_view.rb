@@ -59,7 +59,7 @@ class Bot::NotificationsView
             id: player.messenger_id
           },
           message: {
-            text: "Le signe de ton équipe est : #{team.sign.description}.\nAs-tu reconnu ton coéquipier ?",
+            text: "Le signe de ton équipe est :\n- #{team.sign.description}.\nAs-tu reconnu ton coéquipier ?",
             quick_replies: quick_replies
           }},
           access_token: ENV['ACCESS_TOKEN']
