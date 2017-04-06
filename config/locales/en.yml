@@ -1,8 +1,8 @@
 en:
   bot:
     games:
-      no_room: "Désolé, tu n'as plus de jeu en cours"
+      no_room: "Sorry you have no game running"
     messages:
       greeting: "Hello"
-      hello: "%{greeting} it's Jean-Michel!\nStart a new game or wait for your dude's invitation"
+      hello: "%{greeting} it's Jean-Michel!\nStart a new game or wait for your buddy's invitation"
 

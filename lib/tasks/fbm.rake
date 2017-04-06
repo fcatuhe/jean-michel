@@ -5,7 +5,7 @@ namespace :fbm do
       greeting:[
         {
           locale: "default",
-          text: "Salut c'est Jean-Michel !\nJoue avec 3 de tes potes pour vous chauffer en soirée"
+          text: "Hello it's Jean-Michel !\nPlay with 3 buddies to heat up the night"
         },
         {
           locale: "fr_FR",
@@ -36,6 +36,22 @@ namespace :fbm do
       persistent_menu:[
         {
           locale: "default",
+          composer_input_disabled: false,
+          call_to_actions: [
+            {
+              type: "postback",
+              title: "🍻 New game",
+              payload: "start",
+            },
+            {
+              type: "postback",
+              title: "🤘 Share with your buddies",
+              payload: "share",
+            }
+          ]
+        },
+        {
+          locale: "fr_FR",
           composer_input_disabled: false,
           call_to_actions: [
             {
