@@ -14,5 +14,4 @@ class User < ApplicationRecord
   def player
     players.last
   end
-
 end
