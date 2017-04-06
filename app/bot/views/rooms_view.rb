@@ -10,7 +10,7 @@ class Bot::RoomsView
         type: 'template',
         payload: {
           template_type: 'button',
-          text: 'Invite tes 3 potes :',
+          text: I18n.t('bot.rooms.invite_players.text'),
           buttons: [
             {
               type: 'element_share',
@@ -22,12 +22,12 @@ class Bot::RoomsView
                     image_aspect_ratio: 'square',
                     elements: [
                       {
-                        title: 'Rejoins-moi chez Jean-Michel',
-                        # image_url: ,
+                        title: I18n.t('bot.rooms.invite_players.element_title'),
+                        image_url: cl_image_path('messenger_code', width: 400, crop: :scale),
                         buttons: [
                           {
                             type: 'web_url',
-                            title: "J'arrive !",
+                            title: I18n.t('bot.rooms.invite_players.element_button'),
                             url: "http://m.me/#{ENV['PAGE_ID']}?ref=room_#{room.id}"
                           }
                         ]
@@ -47,7 +47,7 @@ class Bot::RoomsView
     players = room.players.map { |player| "- #{player.first_name}" }.join("\n")
     message.reply(
       {
-        text: "Bienvenue, les joueurs sont :\n#{players}"
+        text: I18n.t('bot.rooms.enter', players: players)
       }
     )
   end
@@ -55,7 +55,7 @@ class Bot::RoomsView
   def full
     message.reply(
       {
-        text: "Désolé, le jeu est complet"
+        text: I18n.t('bot.rooms.full')
       }
     )
   end

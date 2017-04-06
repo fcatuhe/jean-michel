@@ -8,7 +8,7 @@ class Bot::NotificationsView
           id: player.messenger_id
         },
         message: {
-          text: "#{new_player.first_name} est entré dans le jeu"
+          text: I18n.t('bot.notifications.notify_new_player', new_player: new_player.first_name)
         }},
         access_token: ENV['ACCESS_TOKEN']
       )
@@ -25,11 +25,11 @@ class Bot::NotificationsView
           type: 'template',
           payload: {
             template_type: 'button',
-            text: "Le groupe est complet, tu peux lancer une partie",
+            text: I18n.t('bot.notifications.start_game.text'),
             buttons: [
               {
                 type: 'postback',
-                title: 'Je lance la partie !',
+                title: I18n.t('bot.notifications.start_game.button'),
                 payload: 'game_create'
               }
             ]
@@ -59,7 +59,7 @@ class Bot::NotificationsView
             id: player.messenger_id
           },
           message: {
-            text: "Le signe de ton équipe est :\n- #{team.sign.description}.\nAs-tu reconnu ton coéquipier ?",
+            text: I18n.t('bot.notifications.notify_sign', sign: team.sign.description),
             quick_replies: quick_replies
           }},
           access_token: ENV['ACCESS_TOKEN']
@@ -81,7 +81,7 @@ class Bot::NotificationsView
               id: player.messenger_id
             },
             message: {
-              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}\nLes équipes étaient :\n#{teams}\nTu as gagné !\nGage pour les perdants :\n- #{forfeit}\nScore :\n#{scores}",
+              text: I18n.t('bot.notifications.notify_players.winners', player: params[:player].first_name, designated_player: params[:designated_player].first_name, teams: teams, forfeit: forfeit, scores: scores),
             }},
             access_token: ENV['ACCESS_TOKEN']
           )
@@ -93,7 +93,7 @@ class Bot::NotificationsView
               id: player.messenger_id
             },
             message: {
-              text: "#{params[:player].first_name} a désigné #{params[:designated_player].first_name}\nLes équipes étaient :\n#{teams}\nTu as perdu !\nTon gage :\n- #{forfeit}\nScore :\n#{scores}",
+              text: I18n.t('bot.notifications.notify_players.loosers', player: params[:player].first_name, designated_player: params[:designated_player].first_name, teams: teams, forfeit: forfeit, scores: scores),
             }},
             access_token: ENV['ACCESS_TOKEN']
           )

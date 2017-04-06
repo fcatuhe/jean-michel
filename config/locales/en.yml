@@ -7,6 +7,11 @@ en:
         button: Je relance !
         text: Tu relances une partie ?
     messages:
+      default:
+        button: J'ouvre le jeu !
+        text: |-
+          T'es trop bourré %{dude}, j'ai rien compris !
+          Ouvre le jeu ou attends l'invitation de ton pote
       greeting: Hello
       hello:
         button: J'ouvre le jeu !
@@ -14,8 +19,47 @@ en:
           %{greeting} c'est Jean-Michel !
           Ouvre le jeu ou attends l'invitation de ton pote
       share:
-        element_button: "\U0001F44A Jean-Michel"
-        title: "\U0001F44A Checke Jean-Michel pour ambiancer tes soirées !"
+        element_button: 👊 Jean-Michel
+        title: 👊 Checke Jean-Michel pour ambiancer tes soirées !
+    notifications:
+      notify_new_player: |-
+        %{new_player} est entré dans le jeu
+      notify_players:
+        loosers: |-
+          %{player} a désigné %{designated_player}
+          Les équipes étaient :
+          %{teams}
+          Tu as perdu !
+          Ton gage :
+          - %{forfeit}
+          Score :
+          %{scores}
+        winners: |-
+          %{player} a désigné %{designated_player}
+          Les équipes étaient :
+          %{teams}
+          Tu as gagné !
+          Gage pour les perdants :
+          - %{forfeit}
+          Score :
+          %{scores}
+      notify_sign: |-
+        Le signe de ton équipe est :
+        - %{sign}.
+        As-tu reconnu ton coéquipier ?
+      start_game:
+        button: Je lance la partie !
+        text: Le groupe est complet, tu peux lancer une partie
+    rooms:
+      enter: |-
+        Bienvenue, les joueurs sont :
+        %{players}
+      full: Désolé, le jeu est complet
+      invite_players:
+        element_button: J'arrive !
+        element_title: Rejoins-moi chez Jean-Michel
+        text: |-
+          Invite tes 3 potes :
   shared:
     navbar:
       profile: Profile

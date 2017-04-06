@@ -75,11 +75,11 @@ class Bot::MessagesView
         type: 'template',
         payload: {
           template_type: 'button',
-          text: "T'es trop bourré #{user.dude}, j'ai rien compris !\nOuvre le jeu ou attends l'invitation de ton pote",
+          text: I18n.t('bot.messages.default.text', dude: user.dude),
           buttons: [
             {
               type: 'postback',
-              title: "J'ouvre le jeu !",
+              title: I18n.t('bot.messages.default.button'),
               payload: 'room_create'
             }
           ]
