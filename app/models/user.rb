@@ -16,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def human_score
-    "#{first_name} #{last_name.first.upcase} - #{score}"
+    "👉 #{score.to_s.rjust(3)} - #{first_name} #{last_name.first.upcase}"
   end
 end
