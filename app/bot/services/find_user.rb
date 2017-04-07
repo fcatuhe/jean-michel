@@ -15,7 +15,7 @@ class Bot::FindUser
         gender: user_data['gender']
       })
     end
-    I18n.locale = @user.messenger_locale.first(2).to_sym
+    I18n.locale = @user.messenger_locale.first(2).to_sym if I18n.available_locales.include?(@user.messenger_locale&.first(2)&.to_sym)
   end
 
   def call

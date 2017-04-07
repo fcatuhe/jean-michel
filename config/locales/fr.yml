@@ -49,7 +49,7 @@ fr:
           %{scores}
       notify_sign: |-
         Le signe de ton équipe est :
-        - %{sign}.
+        - %{sign}
         As-tu reconnu ton coéquipier ?
       start_game:
         button: Je lance la partie !

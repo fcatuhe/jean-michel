@@ -34,7 +34,7 @@ en:
           Teams where:
           %{teams}
           You lost!
-          Forfeit:
+          Your forfeit:
           - %{forfeit}
           Score:
           %{scores}
@@ -49,7 +49,7 @@ en:
           %{scores}
       notify_sign: |-
         Your team sign is:
-        - %{sign}.
+        - %{sign}
         Did you identify your teammate?
       start_game:
         button: Let's go!
