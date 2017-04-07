@@ -10,7 +10,7 @@ class Game < ApplicationRecord
       teams.each do |team|
         if team.players.include?(player)
           team.winner!
-          team.players.each { |player| player.score += 1; player.save }
+          team.players.each { |player| player.score += 1; player.save; player.user.score += 1; player.user.save }
         else
           team.looser!
         end
@@ -21,7 +21,7 @@ class Game < ApplicationRecord
           team.looser!
         else
           team.winner!
-          team.players.each { |player| player.score += 1; player.save }
+          team.players.each { |player| player.score += 1; player.save; player.user.score += 1; player.user.save }
         end
       end
     end

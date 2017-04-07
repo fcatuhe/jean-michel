@@ -69,6 +69,12 @@ class Bot::MessagesView
     )
   end
 
+  def scores(top_10)
+    message.reply(
+      text: top_10
+    )
+  end
+
   def default
     message.reply(
       attachment: {

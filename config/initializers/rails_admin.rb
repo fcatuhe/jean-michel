@@ -8,7 +8,7 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     list do
-      include_fields :id, :created_at, :email, :first_name, :last_name, :messenger_locale, :messenger_id
+      include_fields :id, :created_at, :first_name, :last_name, :score, :messenger_locale, :email, :messenger_id
     end
     edit do
       include_fields :email, :first_name, :last_name, :messenger_locale

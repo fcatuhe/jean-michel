@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def player
     players.last
   end
+
+  def human_score
+    "#{first_name} #{last_name.first.upcase} - #{score}"
+  end
 end

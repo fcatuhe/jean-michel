@@ -53,6 +53,8 @@ class Bot::Router
       messages_controller.hello
     when 'share'
       messages_controller.share
+    when 'scores'
+      messages_controller.scores
     when 'room_create'
       rooms_controller.create
     when 'game_create'

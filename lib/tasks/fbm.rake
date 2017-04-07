@@ -45,6 +45,11 @@ namespace :fbm do
             },
             {
               type: "postback",
+              title: "🏆 TOP 10 worldwide",
+              payload: "scores",
+            },
+            {
+              type: "postback",
               title: "🤘 Share with your buddies",
               payload: "share",
             }
@@ -58,6 +63,11 @@ namespace :fbm do
               type: "postback",
               title: "🍻 Redémarre le jeu",
               payload: "start",
+            },
+            {
+              type: "postback",
+              title: "🏆 TOP 10 monde",
+              payload: "scores",
             },
             {
               type: "postback",

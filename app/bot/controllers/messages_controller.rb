@@ -12,6 +12,11 @@ class Bot::MessagesController
     view.share
   end
 
+  def scores
+    top_10 = User.order(score: :desc).limit(10).map { |user| user.human_score }.join("\n")
+    view.scores(top_10)
+  end
+
   def default
     view.default
   end

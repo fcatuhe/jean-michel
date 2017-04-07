@@ -8,7 +8,7 @@ fr:
     games:
       no_room: Désolé, tu n'as plus de jeu en cours
       play_again:
-        button: Oui chef !
+        button: Yes man !
         text: Tu relances une partie ?
     messages:
       default:
@@ -52,7 +52,7 @@ fr:
         - %{sign}
         As-tu reconnu ton coéquipier ?
       start_game:
-        button: Je lance la partie !
+        button: Yes man !
         text: Le groupe est complet, tu peux lancer une partie
     rooms:
       enter: |-
