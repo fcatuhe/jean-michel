@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
       include_fields :id, :created_at, :first_name, :last_name, :score, :messenger_locale, :email, :messenger_id
     end
     edit do
-      include_fields :email, :first_name, :last_name, :messenger_locale
+      include_fields :email, :first_name, :last_name, :score, :messenger_locale
     end
   end
 
