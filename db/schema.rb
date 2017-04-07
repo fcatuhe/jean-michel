@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406151936) do
+ActiveRecord::Schema.define(version: 20170407091911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "forfeits", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "games", force: :cascade do |t|
@@ -29,6 +28,31 @@ ActiveRecord::Schema.define(version: 20170406151936) do
     t.boolean  "played",     default: false
     t.index ["forfeit_id"], name: "index_games_on_forfeit_id", using: :btree
     t.index ["room_id"], name: "index_games_on_room_id", using: :btree
+  end
+
+  create_table "mobility_string_translations", force: :cascade do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.string   "value"
+    t.integer  "translatable_id"
+    t.string   "translatable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_string_translations_on_translatable_attribute", using: :btree
+    t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_string_translations_on_keys", unique: true, using: :btree
+    t.index ["translatable_type", "key", "value", "locale"], name: "index_mobility_string_translations_on_query_keys", using: :btree
+  end
+
+  create_table "mobility_text_translations", force: :cascade do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.integer  "translatable_id"
+    t.string   "translatable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute", using: :btree
+    t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true, using: :btree
   end
 
   create_table "players", force: :cascade do |t|
@@ -47,9 +71,8 @@ ActiveRecord::Schema.define(version: 20170406151936) do
   end
 
   create_table "signs", force: :cascade do |t|
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "team_members", force: :cascade do |t|
