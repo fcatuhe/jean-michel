@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  has_many :players, dependent: :destroy
+  has_many :players, -> { order(:id) }, dependent: :destroy
   has_many :users, through: :players
   has_many :games, dependent: :destroy
   has_many :teams, through: :games
