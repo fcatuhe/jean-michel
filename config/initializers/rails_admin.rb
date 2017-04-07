@@ -4,6 +4,23 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_user && current_user.admin
   end
 
+  config.included_models = ["User", "Room", "Game"]
+
+  config.model 'User' do
+    list do
+      include_fields :id, :created_at, :email, :first_name, :last_name, :messenger_locale, :messenger_id
+    end
+    edit do
+      include_fields :email, :first_name, :last_name, :messenger_locale
+    end
+  end
+
+  config.model 'Room' do
+    list do
+      include_fields :id, :created_at, :games, :users
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==
