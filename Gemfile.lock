@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/hyperoslo/facebook-messenger.git
-  revision: a47df79a873bd0bd2766a2cbb9ea3be2360a79c9
+  revision: 0ce15312ee6bfbb2d28675878f3033870b14a77a
   specs:
     facebook-messenger (0.12.0)
       httparty (~> 0.13, >= 0.13.7)

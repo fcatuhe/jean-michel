@@ -1,7 +1,7 @@
 namespace :fbm do
   desc "Greeting Text"
   task greeting: :environment do
-    data = {
+    success =  Facebook::Messenger::Profile.set({
       greeting:[
         {
           locale: "default",
@@ -12,27 +12,35 @@ namespace :fbm do
           text: "Salut c'est Jean-Michel !\nJoue avec 3 de tes potes pour vous chauffer en soirée"
         }
       ]
-    }
-    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    }, access_token: ENV['ACCESS_TOKEN'])
 
-    puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=greeting&access_token=#{ENV['ACCESS_TOKEN']}")
+    if success
+      puts 'Greeting Text set :'
+      puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=greeting&access_token=#{ENV['ACCESS_TOKEN']}")
+    else
+      puts 'Failure'
+    end
   end
 
   desc "Get Started Button"
   task start: :environment do
-    data = {
+    success =  Facebook::Messenger::Profile.set({
       get_started: {
         payload: "start"
       }
-    }
-    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    }, access_token: ENV['ACCESS_TOKEN'])
 
-    puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=get_started&access_token=#{ENV['ACCESS_TOKEN']}")
+    if success
+      puts 'Get Started Button set :'
+      puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=get_started&access_token=#{ENV['ACCESS_TOKEN']}")
+    else
+      puts 'Failure'
+    end
   end
 
   desc "Persistent Menu"
   task menu: :environment do
-    data = {
+    success =  Facebook::Messenger::Profile.set({
       persistent_menu:[
         {
           locale: "default",
@@ -77,10 +85,14 @@ namespace :fbm do
           ]
         }
       ]
-    }
-    puts RestClient.post("https://graph.facebook.com/v2.8/me/messenger_profile?access_token=#{ENV['ACCESS_TOKEN']}", data.to_json, {content_type: :json, accept: :json})
+    }, access_token: ENV['ACCESS_TOKEN'])
 
-    puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=persistent_menu&access_token=#{ENV['ACCESS_TOKEN']}")
+    if success
+      puts 'Persistent Menu set :'
+      puts RestClient.get("https://graph.facebook.com/v2.8/me/messenger_profile?fields=persistent_menu&access_token=#{ENV['ACCESS_TOKEN']}")
+    else
+      puts 'Failure'
+    end
   end
 
   desc "Messenger Code"
